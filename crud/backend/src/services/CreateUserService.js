@@ -1,14 +1,17 @@
 const User = require("../models/User")
 
-
 module.exports = {
   async create(name, email) {
     
-    // const userAlreadyExists = await User.findOne(email);
+    const userAlreadyExists = await User.findOne({
+      where: {
+        email
+      }
+    });
 
-    // if (userAlreadyExists) {
-    //   throw new Error("User Already Exists!")
-    // }
+    if (userAlreadyExists) {
+      throw new Error("User Already Exists!")
+    }
 
     console.log(name, email)
 
